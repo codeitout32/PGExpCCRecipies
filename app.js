@@ -15,11 +15,11 @@ const dbConfig = {
 }
 
 const connect = async () => {
+    try {
     const { Client } = pg
     const client = new Client({dbConfig})
     await client.connect()
     
-    try {
         const res = await client.query('SELECT * from recipies')
         client.end()
         return res
@@ -130,6 +130,5 @@ app.post('/edit', function(req,res) {
 
 //server
 app.listen(process.env.PORT, function(){
-    console.log('Server started in port 3000', dbConfig);
-
+    console.log('Server started in port', process.env.PORT , dbConfig);
 })
