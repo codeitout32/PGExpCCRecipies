@@ -10,12 +10,13 @@ app = express();
 const dbConfig = {
     user: process.env.DBUSER,
         password: process.env.DBPASSWORD,
-        database: process.env.DBNAME
+        database: process.env.DBNAME,
+        host: process.env.DBHOSTNAME
 }
 
 const connect = async () => {
     const { Client } = pg
-    const client = new Client(dbConfig)
+    const client = new Client({dbConfig})
     await client.connect()
     
     try {
