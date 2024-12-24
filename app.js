@@ -8,9 +8,9 @@ pg = require('pg'),
 app = express();
 
 const dbConfig = {
-    user: process.env.DBUSER,
-        password: process.env.DBPASSWORD,
-        database: process.env.DBNAME,
+    // user: process.env.DBUSER,
+    //     password: process.env.DBPASSWORD,
+    //     database: process.env.DBNAME,
         // host: process.env.DBHOSTNAME
 }
 
