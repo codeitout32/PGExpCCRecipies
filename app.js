@@ -1,3 +1,4 @@
+require('dotenv').config()
 var express = require('express'),
 path = require('path'),
 bodyParser = require('body-parser'),
@@ -6,13 +7,15 @@ dust = require('dustjs-helpers'),
 pg = require('pg'),
 app = express();
 
+const dbConfig = {
+    user: process.env.DBUSER,
+        password: process.env.DBPASSWORD,
+        database: process.env.DBNAME
+}
+
 const connect = async () => {
     const { Client } = pg
-    const client = new Client({
-        user: 'user',
-        password: 'admin',
-        database: 'recipebook-db'
-    })
+    const client = new Client(dbConfig)
     await client.connect()
     
     try {
@@ -32,11 +35,7 @@ const connect = async () => {
 }
 const add = async (request) => {
     const { Client } = pg
-    const client = new Client({
-        user: 'user',
-        password: 'admin',
-        database: 'recipebook-db'
-    })
+    const client = new Client(dbConfig)
     await client.connect()
     
     try {
@@ -94,11 +93,7 @@ app.post('/add', function(req,res) {
 
 
 const { Client } = pg
-const myClient = new Client({
-    user: 'user',
-    password: 'admin',
-    database: 'recipebook-db'
-})
+const myClient = new Client(dbConfig)
 app.delete('/delete/:id', function(req,res) {
     // debugger;
     console.log('add req', req);
@@ -134,5 +129,6 @@ app.post('/edit', function(req,res) {
 
 //server
 app.listen(3000, function(){
-    console.log('Server started in port 3000');
+    console.log('Server started in port 3000', dbConfig);
+
 })
