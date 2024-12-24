@@ -12,6 +12,7 @@ const dbConfig = {
     //     password: process.env.DBPASSWORD,
     //     database: process.env.DBNAME,
         // host: process.env.DBHOSTNAME
+        connectionString:   process.env.CONNSTRING
 }
 
 const connect = async () => {
