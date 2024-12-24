@@ -18,7 +18,7 @@ const dbConfig = {
 const connect = async () => {
     try {
     const { Client } = pg
-    const client = new Client({dbConfig})
+    const client = new Client(dbConfig)
     await client.connect()
     
         const res = await client.query('SELECT * from recipies')
